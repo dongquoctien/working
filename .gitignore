@@ -1,0 +1,7 @@
+task-orchestrator/src/__pycache__
+task-orchestrator/src/config/__pycache__
+task-orchestrator/src/core/__pycache__
+task-orchestrator/src/integrations/__pycache__
+task-orchestrator/src/ui/__pycache__
+task-orchestrator/src/utils/__pycache__
+task-orchestrator/logs/
