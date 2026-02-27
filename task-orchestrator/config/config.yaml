@@ -1,0 +1,108 @@
+# Task Orchestrator Configuration
+# Copy this file and customize for your environment
+
+# =============================================================================
+# TRACKER SELECTION
+# =============================================================================
+# Choose which issue tracker to use: "jira" or "redmine"
+tracker: "jira"  # Change to "redmine" if using Redmine
+
+# =============================================================================
+# JIRA CONFIGURATION (used when tracker: "jira")
+# =============================================================================
+jira:
+  url: "https://your-company.atlassian.net"
+  email: "your-email@company.com"
+  # Use environment variable for API token
+  api_token: "${JIRA_API_TOKEN}"
+
+# =============================================================================
+# REDMINE CONFIGURATION (used when tracker: "redmine")
+# =============================================================================
+redmine:
+  url: "https://redmine.your-company.com"
+  # Use environment variable for API key
+  api_key: "${REDMINE_API_KEY}"
+  # Status names (must match your Redmine workflow)
+  done_status: "Closed"
+  in_progress_status: "In Progress"
+
+# =============================================================================
+# BITBUCKET CONFIGURATION
+# =============================================================================
+bitbucket:
+  workspace: "your-workspace"
+  username: "your-username"
+  # Use environment variable for app password
+  app_password: "${BITBUCKET_APP_PASSWORD}"
+
+# =============================================================================
+# PROJECT CONFIGURATIONS
+# =============================================================================
+# Add your projects here
+# The tool matches issues to projects by:
+# - Labels matching project name
+# - Components/Categories matching project name
+# - Project key matching project name
+projects:
+  # Java backend project (Gradle)
+  - name: "oh-api"
+    path: "D:/Code/oh-api"
+    test_command: "gradlew.bat test"
+    build_command: "gradlew.bat build"
+    branch_prefix: "feature"
+    # Optional: override tracker for this project
+    # tracker: "redmine"
+
+  # Angular frontend project
+  - name: "oh-admin"
+    path: "D:/Code/oh-admin"
+    test_command: "npm test"
+    build_command: "npm run build"
+    branch_prefix: "feature"
+
+  # Java backend project (Maven)
+  # - name: "another-service"
+  #   path: "D:/Code/another-service"
+  #   test_command: "mvn test"
+  #   build_command: "mvn package"
+  #   tracker: "jira"  # This project uses Jira even if global is Redmine
+
+# =============================================================================
+# WORKFLOW SETTINGS
+# =============================================================================
+workflow:
+  # Maximum retry attempts when tests fail
+  max_retries: 5
+
+  # Delay between retry attempts (seconds)
+  retry_delay_seconds: 10
+
+  # Automatically create PR after tests pass
+  auto_create_pr: true
+
+  # Automatically update tracker status (Jira/Redmine)
+  auto_update_tracker: true
+
+  # Default status names (used for Jira, Redmine uses its own config)
+  done_status: "Done"
+  in_progress_status: "In Progress"
+
+# =============================================================================
+# CLAUDE CLI SETTINGS
+# =============================================================================
+claude:
+  # Model to use: sonnet, opus, haiku
+  model: "sonnet"
+
+  # Timeout for Claude operations (minutes)
+  timeout_minutes: 30
+
+  # Path to Claude CLI (default: claude)
+  cli_path: "claude"
+
+# =============================================================================
+# APPLICATION SETTINGS
+# =============================================================================
+log_dir: "logs"
+history_file: "history.json"

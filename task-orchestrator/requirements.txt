@@ -1,0 +1,17 @@
+# Core
+textual>=0.40.0
+rich>=13.0.0
+pyyaml>=6.0
+httpx>=0.25.0
+pydantic>=2.0
+pydantic-settings>=2.0
+python-dotenv>=1.0
+
+# Jira/Atlassian
+atlassian-python-api>=3.41.0
+
+# Dev dependencies
+pytest>=7.0
+pytest-asyncio>=0.21.0
+black>=23.0
+ruff>=0.1.0
